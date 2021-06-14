@@ -34,7 +34,7 @@ exports.crearCuenta = async (req, res) => {
 
         await envarEmail.sendMail({
             usuario,
-            subject: 'Condirma tu cuenta UpTask',
+            subject: 'Confirma tu cuenta UpTask',
             confirmarUrl,
             archivo: 'confirmar-cuenta'
         });
@@ -42,7 +42,7 @@ exports.crearCuenta = async (req, res) => {
         req.flash('correcto', 'Enviamos un correo para confirmar tu cuenta');
         return res.redirect('/iniciar-sesion');
     } catch (err) {
-        req.flash('error', err.errors.map(error => error.message));
+        req.flash('error', err.errors.map(error => err.message));
 
         return res.render('crearCuenta', {
             mensajes: req.flash(),
